@@ -1,19 +1,29 @@
 pipeline {
-   agent any
-   stages {
-       stage('Build Code') {
-           steps {
-               sh """
-               echo "Building Artifact from Branch1"
-               """
-           }
-       }
-      stage('Deploy Code') {
-          steps {
-               sh """
-               echo "Deploying Code from Branch1"
-               """
-          }
+
+  agent any
+
+  options {
+
+    buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
+
+  }
+
+  stages {
+
+    stage('Hello') {
+
+      steps {
+
+        sh '''
+
+          java -version
+
+        '''
+
       }
-   }
+
+    }
+
+  }
+
 }
